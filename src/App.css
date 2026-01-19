@@ -1,0 +1,35 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: Arial, sans-serif;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+}
+
+button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card {
+  margin-top: 10px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #f3f4f6;
+}
+
+.error {
+  color: red;
+}
+
+.advice {
+  font-weight: bold;
+}
