@@ -7,6 +7,8 @@ function App() {
   const [error, setError] = useState("");
 
   const fetchWeather = async () => {
+    if (!city.trim()) return;
+
     setError("");
     setWeather(null);
 
@@ -28,32 +30,35 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Weather & Travel Advisor 🌍</h1>
+      <div className="container">
+        <h1>Weather & Travel Advisor 🌤️</h1>
 
-      <input
-        type="text"
-        placeholder="Enter city"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Enter city name"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && fetchWeather()}
+        />
 
-      <button onClick={fetchWeather}>Check Weather</button>
+        <button onClick={fetchWeather}>Check Weather</button>
 
-      {error && <p className="error">{error}</p>}
+        {error && <p className="error">{error}</p>}
 
-      {weather && (
-        <div className="card">
-          <h2>{weather.name}</h2>
-          <p>{weather.main.temp}°C</p>
-          <p>{weather.weather[0].description}</p>
+        {weather && (
+          <div className="card">
+            <h2>{weather.name}</h2>
+            <p className="temp">{weather.main.temp}°C</p>
+            <p>{weather.weather[0].description}</p>
 
-          <p className="advice">
-            {weather.weather[0].main === "Rain"
-              ? "🌧️ Better to stay in or carry rain gear"
-              : "☀️ Good weather for travel"}
-          </p>
-        </div>
-      )}
+            <p className="advice">
+              {weather.weather[0].main === "Rain"
+                ? "🌧️ Better to stay in or carry rain gear"
+                : "☀️ Good weather for travel"}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
